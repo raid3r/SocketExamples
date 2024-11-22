@@ -34,11 +34,21 @@ namespace ChatClient
             button1 = new Button();
             textBox1 = new TextBox();
             dataGridView1 = new DataGridView();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            FromLogin = new DataGridViewTextBoxColumn();
+            ToLogin = new DataGridViewTextBoxColumn();
+            dateTimeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            textDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            fileDataDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            chatMessageBindingSource = new BindingSource(components);
             button2 = new Button();
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
+            usersListBox = new ListBox();
+            meLoginLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chatMessageBindingSource).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -61,13 +71,58 @@ namespace ChatClient
             // dataGridView1
             // 
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(22, 13);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, FromLogin, ToLogin, dateTimeDataGridViewTextBoxColumn, textDataGridViewTextBoxColumn, fileDataDataGridViewTextBoxColumn });
+            dataGridView1.DataSource = chatMessageBindingSource;
+            dataGridView1.Location = new Point(193, 12);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(444, 397);
+            dataGridView1.Size = new Size(718, 397);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellContentClick += downloadButtonClick;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // FromLogin
+            // 
+            FromLogin.DataPropertyName = "FromLogin";
+            FromLogin.HeaderText = "From";
+            FromLogin.Name = "FromLogin";
+            FromLogin.ReadOnly = true;
+            // 
+            // ToLogin
+            // 
+            ToLogin.DataPropertyName = "ToLogin";
+            ToLogin.HeaderText = "To";
+            ToLogin.Name = "ToLogin";
+            ToLogin.ReadOnly = true;
+            // 
+            // dateTimeDataGridViewTextBoxColumn
+            // 
+            dateTimeDataGridViewTextBoxColumn.DataPropertyName = "DateTime";
+            dateTimeDataGridViewTextBoxColumn.HeaderText = "DateTime";
+            dateTimeDataGridViewTextBoxColumn.Name = "dateTimeDataGridViewTextBoxColumn";
+            // 
+            // textDataGridViewTextBoxColumn
+            // 
+            textDataGridViewTextBoxColumn.DataPropertyName = "Text";
+            textDataGridViewTextBoxColumn.HeaderText = "Text";
+            textDataGridViewTextBoxColumn.Name = "textDataGridViewTextBoxColumn";
+            // 
+            // fileDataDataGridViewTextBoxColumn
+            // 
+            fileDataDataGridViewTextBoxColumn.DataPropertyName = "FileData";
+            fileDataDataGridViewTextBoxColumn.HeaderText = "FileData";
+            fileDataDataGridViewTextBoxColumn.Name = "fileDataDataGridViewTextBoxColumn";
+            // 
+            // chatMessageBindingSource
+            // 
+            chatMessageBindingSource.DataSource = typeof(ChatMessage);
             // 
             // button2
             // 
@@ -88,11 +143,32 @@ namespace ChatClient
             timer1.Interval = 3000;
             timer1.Tick += timer1_Tick;
             // 
+            // usersListBox
+            // 
+            usersListBox.FormattingEnabled = true;
+            usersListBox.ItemHeight = 15;
+            usersListBox.Location = new Point(7, 57);
+            usersListBox.Name = "usersListBox";
+            usersListBox.Size = new Size(180, 349);
+            usersListBox.TabIndex = 4;
+            usersListBox.SelectedIndexChanged += usersListBox_SelectedIndexChanged;
+            // 
+            // meLoginLabel
+            // 
+            meLoginLabel.AutoSize = true;
+            meLoginLabel.Location = new Point(12, 12);
+            meLoginLabel.Name = "meLoginLabel";
+            meLoginLabel.Size = new Size(38, 15);
+            meLoginLabel.TabIndex = 5;
+            meLoginLabel.Text = "label1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(478, 450);
+            ClientSize = new Size(923, 450);
+            Controls.Add(meLoginLabel);
+            Controls.Add(usersListBox);
             Controls.Add(button2);
             Controls.Add(dataGridView1);
             Controls.Add(textBox1);
@@ -101,6 +177,7 @@ namespace ChatClient
             Text = "Form1";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chatMessageBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -114,5 +191,16 @@ namespace ChatClient
         private OpenFileDialog openFileDialog1;
         private SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Timer timer1;
+        private ListBox usersListBox;
+        private BindingSource chatMessageBindingSource;
+        private DataGridViewTextBoxColumn fromDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn toDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn FromLogin;
+        private DataGridViewTextBoxColumn ToLogin;
+        private DataGridViewTextBoxColumn dateTimeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn textDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn fileDataDataGridViewTextBoxColumn;
+        private Label meLoginLabel;
     }
 }

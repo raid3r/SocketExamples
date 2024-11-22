@@ -203,7 +203,7 @@ public class ChatServer
                     Messages = _storage
                     .Messages
                     .Where(x => x.Id > message.FromId &&
-                    (x.From.Id == fromUser.Id || x.To.Id == fromUser.Id))
+                    (x.From.Id == fromUser.Id || x.To?.Id == fromUser.Id))
                     .ToList()
                 }
             )
